@@ -1,10 +1,34 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
+@using DemoBlazorMvcInterop.Components
 @{
     ViewData["Title"] = "Server-side Blazor Demo";
+}
+
+@section Styles {
+    @* Must declare because the blazor server js need this to align the signalR request base url. *@
+    <base href="~/" />
+    @* Default styles & fonts resources that is generate in the normal Server-side Blazor project template  *@
+    <link href="css/blazor_add.css" rel="stylesheet" />
+
+    @* If no component css declared, this can be removed. *@
+    <link href="DemoBlazorMvcInterop.styles.css" rel="stylesheet" />
 }
 
 <h2>Server-side Blazor Demo</h2>
 
 <p>This page demonstrate Server-side Blazor integrate into MVC view</p>
+
+<hr/>
+
+<div>
+    <component type="typeof(Counter)" render-mode="Server" param-CurrentCount="1" />
+</div>
+
+<hr/>
+
+@section Scripts {
+    @* If many views have embedded Blazor components, this can be put inside the Shared/_Layout.cshtml as the last <script/> tag. *@
+    <script src="~/_framework/blazor.server.js"></script>
+}
