@@ -7,7 +7,10 @@
 }
 
 @section Styles {
-    @* Must declare because the blazor server js need this to align the signalR request base url. *@
+    @* 
+        Must declare because the blazor server js need this to align the signalR request base url.
+        see: https://docs.microsoft.com/en-us/aspnet/core/blazor/host-and-deploy/#app-base-path
+     *@
     <base href="~/" />
     @* Default styles & fonts resources that is generate in the normal Server-side Blazor project template  *@
     <link href="css/blazor_add.css" rel="stylesheet" />
