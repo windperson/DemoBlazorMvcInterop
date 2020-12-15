@@ -30,6 +30,6 @@
     private async Task ResetCount()
     {
         var resetValue = await JSRuntime.InvokeAsync<string>("uiFunctions.showPrompt", "Reset counter");
-        CurrentCount = Int32.Parse(resetValue);
+        CurrentCount = int.Parse(resetValue);
     }
 }
