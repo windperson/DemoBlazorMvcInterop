@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Components
 @inject IJSRuntime JSRuntime
+@inject NavigationManager navManager
 
 <h1>Counter</h1>
 
@@ -10,12 +11,16 @@
     <button class="btn btn-primary" @onclick="DecreaseCount">-</button>
 </span>
 <br/>
-<div>
+<div class="btn-block">
     <button class="btn btn-info" @onclick="ResetCount">Reset</button>
+    <button class="btn btn-success" @onclick="() => GotoResultPage(CurrentCount)">Submit</button>
 </div>
 
 @code {
     [Parameter] public int CurrentCount { get; set; } = 0;
+
+    [Parameter]
+    public string ResultUrl { get; set; } = @"finalResult/total";
 
     private void IncrementCount()
     {
@@ -31,5 +36,11 @@
     {
         var resetValue = await JSRuntime.InvokeAsync<string>("uiFunctions.showPrompt", "Reset counter");
         CurrentCount = int.Parse(resetValue);
+    }
+
+    private void GotoResultPage(int finalCount)
+    {
+        var gotoUri = $"{ResultUrl}?result={finalCount}";
+        navManager.NavigateTo(gotoUri, true);
     }
 }
