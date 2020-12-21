@@ -16,7 +16,7 @@
     <link href="css/blazor_add.css" rel="stylesheet" />
 
     @* If no component css declared, this can be removed. *@
-    <link href="DemoBlazorMvcInterop.styles.css" rel="stylesheet" />
+    <link href="@(typeof(Startup).Assembly.GetName().Name).styles.css" rel="stylesheet" />
 }
 
 <h2>Server-side Blazor Demo</h2>
